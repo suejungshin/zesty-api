@@ -30,7 +30,7 @@ Endpoints are exposed at http://localhost:8080/{endpoint}
   Returns the image of the property by ID
 
   Path parameter - property ID (e.g., f853874999424ad2a5b6f37af6b56610)<br>
-  Query parameter (optional) - overlay=True or overlay=False (case insensitive)
+  Query parameter (optional) - overlayed=True or overlayed=False (case insensitive)
 
   Examples -
   http://localhost:8080/api/display/f853874999424ad2a5b6f37af6b56610

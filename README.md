@@ -7,26 +7,18 @@ Returns basic information about a given property and its neighbors
 `docker-compose -p project up -d` ("-p project" so container name is predictable for steps below, "-d" for detatched mode)
 
 
-### To Run Tests:
+## How To Test
 `docker exec -it project_zesty_app_1 pytest`
 (or grab CONTAINER ID for the zesty_app at port 8080 printed from `docker ps -a` and subsitute, e.g., `docker exec -it 9c270f7860ac pytest`)
 
-In addition, can go to following example links in browser or Postman to see response:
-http://localhost:8080/api/display/f853874999424ad2a5b6f37af6b56610
-http://localhost:8080/api/display/f853874999424ad2a5b6f37af6b56610?overlay=true
-http://localhost:8080/api/statistics/622088210a6f43fca2a1824e8610df03?distance=1000
-http://localhost:8080/api/find  (include POST below)
-  Post:
-  ```
-  {
-    "type": "Feature",
-    "geometry": {
-    "type": "Point",
-    "coordinates": [-80, 26]
-  },
-    "distance_meters": 1000000000
-  }
-  ```
+Or, can go to links at localhost below to check it out.
+Here are the valid propertyIDs for the 5 properties in the test database, for reference:
+- f1650f2a99824f349643ad234abff6a2
+- f853874999424ad2a5b6f37af6b56610
+- 3290ec7dd190478aab124f6f2f32bdd7
+- 5e25c841f0ca47ac8215b5fd0076259a
+- 622088210a6f43fca2a1824e8610df03
+
 
 ## API endpoints
 
@@ -55,8 +47,8 @@ Endpoints are exposed at http://localhost:8080/{endpoint}
 
   POST a geojson object specifying [longitude, latitude] (in DEGREES) of target property, as well as search distance radius in METERS
 
+  Example- http://localhost:8080/api/find  (plus the POST data below)
   POST request data must be in format:
-
    ```python
   {
     "type": "Feature",
@@ -75,7 +67,7 @@ Endpoints are exposed at http://localhost:8080/{endpoint}
 
   Note that the PostGIS query seems to break down at distances too large, in which case the API response will be "Search distance too large"
 
-  #### POST /api/statistics
+  #### GET /api/statistics
 
   Returns basic statistics about the target property's neighbors, where neighbors are those properties whose POINT geocode_code are within target distance (in METERS) of the target property's POINT geocode_code:
   - Total area (in SQUARE METERS) of all neighboring parcels, summed

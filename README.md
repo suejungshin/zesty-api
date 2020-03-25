@@ -7,6 +7,22 @@ Code for the containerized service can be found at related repo: https://github.
 ## How to Run
 `docker-compose -p project up -d` ("-p project" so container name is predictable for steps below, "-d" for detatched mode)
 
+Naviate to services:
+
+http://localhost:8080/api/display/f853874999424ad2a5b6f37af6b56610?overlayed=true
+http://localhost:8080/api/statistics/622088210a6f43fca2a1824e8610df03?distance=10
+```
+curl --location --request POST 'http://localhost:8080/api/find' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+"type": "Feature",
+"geometry": {
+"type": "Point",
+"coordinates": [-80, 26]
+},
+"distance_meters": 10000000
+}'
+```
 
 ## How To Test
 `docker exec -it project_zesty_app_1 pytest`<br>
@@ -34,8 +50,8 @@ Endpoints are exposed at http://localhost:8080/{endpoint}
 
   Examples -
   http://localhost:8080/api/display/f853874999424ad2a5b6f37af6b56610
-  http://localhost:8080/api/display/f853874999424ad2a5b6f37af6b56610?overlay=true
-  http://localhost:8080/api/display/f853874999424ad2a5b6f37af6b56610?overlay=false
+  http://localhost:8080/api/display/f853874999424ad2a5b6f37af6b56610?overlayed=true
+  http://localhost:8080/api/display/f853874999424ad2a5b6f37af6b56610?overlayed=false
 
   Example response:<br>
   JPEG image as displayed in browser<br>
@@ -57,7 +73,7 @@ Endpoints are exposed at http://localhost:8080/{endpoint}
         "type": "Point",
         "coordinates": [-80, 26]
     },
-    "distance": 1000000
+    "distance_meters": 1000000
   }
   ```
 

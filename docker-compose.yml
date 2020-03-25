@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  postgres:
+    image: mdillon/postgis:9.6
+    restart: always
+    ports:
+      - '5555:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: engineTest888
+      POSTGRES_DB: zesty
+    volumes:
+      - ./init-db/:/docker-entrypoint-initdb.d/
+      - pg-data:/var/lib/postgresql/data
+  zesty_app:
+    image: suejungshin/zesty-app:latest
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: '5432'
+    depends_on:
+      - 'postgres'
+    ports:
+      - '8080:8080'
+volumes:
+  pg-data:

@@ -11,7 +11,7 @@ Returns basic information about a given property and its neighbors
 `docker exec -it project_zesty_app_1 pytest`<br>
 (or grab CONTAINER ID for the zesty_app at port 8080 printed from `docker ps -a` and subsitute, e.g., `docker exec -it 9c270f7860ac pytest`)
 
-Or, can go to links at localhost below to check it out.<b>
+Or, can go to links at localhost below to check it out.<br>
 Here are the valid propertyIDs for the 5 properties in the test database, for reference:
 - f1650f2a99824f349643ad234abff6a2
 - f853874999424ad2a5b6f37af6b56610

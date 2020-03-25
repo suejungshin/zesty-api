@@ -115,27 +115,27 @@ or `docker exec -it 9c270f7860ac psql -U postgres` where the alphanumeric string
 (If developing locally, need to `docker stop project_zesty_app_1` the dockerized zesty_app service and serve it at local host and keep the dockerized postgres db running)
 
 ##### Basic Postgres commands:
-- `\l`  -- Show databases
-- `\c databaseName`  -- Connect to database of choice
-- `\dt` -- show tables
-- `\x` -- expanded view on to show rows in the case the column view wrapping poorly
-- `SELECT * FROM properties;`
-- Can run the ST_ commands in psql - make sure to use single quotes, not double quotes
-- `SELECT ST_AsEWKT('0101000020E6100000A79608AFB80454C08CEABEAD05633A40');`
+`\l`  -- Show databases
+`\c databaseName`  -- Connect to database of choice
+`\dt` -- show tables
+`\x` -- expanded view on to show rows in the case the column view wrapping poorly
+`SELECT * FROM properties;`
+Can run the ST_ commands in psql - make sure to use single quotes, not double quotes
+`SELECT ST_AsEWKT('0101000020E6100000A79608AFB80454C08CEABEAD05633A40');`
 
 ### Docker
 To build image:
-- `docker build -t zesty .`
-- `docker images` Get image id
-- `docker tag INSERT_IMAGE_ID_HERE suejungshin/zesty-app:latest`
-- `docker push suejungshin/zesty-app:latest`
+`docker build -t zesty .`
+`docker images` Get image id
+`docker tag INSERT_IMAGE_ID_HERE suejungshin/zesty-app:latest`
+`docker push suejungshin/zesty-app:latest`
 
 
 ### Other notes to self
 When developing locally:
-- `python3 -m venv venv`
-- `source venv/bin/activate`
-- to get out `deactivate`
+`python3 -m venv venv`
+`source venv/bin/activate`
+to get out `deactivate`
 
 urllib.request certificate error on MacOS (one time fix)
 Go to Macintosh HD > Applications > Python3.6 folder (or other version) > double click on "Install Certificates.command" file

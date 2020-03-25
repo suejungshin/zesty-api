@@ -1,7 +1,8 @@
 # Zesty.ai Backend Project
 
 ## Summary
-Returns basic information about a given property and its neighbors
+Returns basic information about a given property and its neighbors<br>
+Code for the containerized service can be found at related repo: https://github.com/suejungshin/zesty-api-backup
 
 ## How to Run
 `docker-compose -p project up -d` ("-p project" so container name is predictable for steps below, "-d" for detatched mode)
@@ -11,7 +12,7 @@ Returns basic information about a given property and its neighbors
 `docker exec -it project_zesty_app_1 pytest`<br>
 (or grab CONTAINER ID for the zesty_app at port 8080 printed from `docker ps -a` and subsitute, e.g., `docker exec -it 9c270f7860ac pytest`)
 
-Or, can go to links at localhost below to check it out.<br>
+In addition, can go to links at localhost below to check it out.<br>
 Here are the valid propertyIDs for the 5 properties in the test database, for reference:
 - f1650f2a99824f349643ad234abff6a2
 - f853874999424ad2a5b6f37af6b56610
@@ -94,44 +95,3 @@ Endpoints are exposed at http://localhost:8080/{endpoint}
     zone_density: 97.49789007556822
   }
 ```
-
-
-## Other Notes to Self
-
-Other Notes to Self, hope you don't mind if I put these here to help my future self!
-
-### To Access Postgres shell from within Docker container:
-1. `docker-compose up -d` (if not already done above)
-2. `docker exec -it project_postgres_1 psql -U postgres`
-or `docker exec -it 9c270f7860ac psql -U postgres` where the alphanumeric string should be replaced by the container ID from running `docker ps -a`
-(If developing locally, need to `docker stop project_zesty_app_1` the dockerized zesty_app service and serve it at local host and keep the dockerized postgres db running)
-
-##### Basic Postgres commands:
-`\l`  -- Show databases <br>
-`\c databaseName`  -- Connect to database of choice<br>
-`\dt` -- show tables<br>
-`\x` -- expanded view on to show rows in the case the column view wrapping poorly<br>
-`SELECT * FROM properties;`<br>
-Can run the ST_ commands in psql - make sure to use single quotes, not double quotes<br>
-`SELECT ST_AsEWKT('0101000020E6100000A79608AFB80454C08CEABEAD05633A40');`<br>
-
-### Docker
-To build image:<br>
-`docker build -t zesty .`<br>
-`docker images` Get image id<br>
-`docker tag INSERT_IMAGE_ID_HERE suejungshin/zesty-app:latest`<br>
-`docker push suejungshin/zesty-app:latest`<br>
-
-
-### Other notes to self
-When developing locally:<br>
-`python3 -m venv venv`<br>
-`source venv/bin/activate`<br>
-to get out `deactivate`<br>
-
-urllib.request certificate error on MacOS (one time fix)<br>
-Go to Macintosh HD > Applications > Python3.6 folder (or other version) > double click on "Install Certificates.command" file
-
-To enter docker container once it's running:<br>
-docker exec -it af6cad9cf311 bash<br>
-ctrl + d to exit

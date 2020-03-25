@@ -25,7 +25,7 @@ Here are the valid propertyIDs for the 5 properties in the test database, for re
 
 Endpoints are exposed at http://localhost:8080/{endpoint}
 
-  ### GET /api/display/:id(?overlay=True)
+  ### GET /api/display/:id(?overlayed=True)
 
   Returns the image of the property by ID
 
